@@ -58,11 +58,11 @@ flutter:
     - assets/images/
 
    
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/SFProText-Regular.ttf
-        - asset: assets/fonts/SFProText-Bold.ttf
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/SFProText-Regular.ttf
+  #       - asset: assets/fonts/SFProText-Bold.ttf
          
 
 
