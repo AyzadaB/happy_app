@@ -57,3 +57,12 @@ flutter:
     - assets/icons/
     - assets/images/
 
+   
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/SFProText-Regular.ttf
+        - asset: assets/fonts/SFProText-Bold.ttf
+         
+
+
