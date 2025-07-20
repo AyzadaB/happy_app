@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happy_app/core/features/moments/pages/add_moment.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -87,8 +88,7 @@ class _MainPageState extends State<MainPage> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle button press
-                  print('Add the first moment button pressed!');
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => const AddMomentPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFB71C1C), // Deep red color
