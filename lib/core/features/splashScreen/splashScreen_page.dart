@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happy_app/core/features/onboarding/pages/onboarding_page1.dart';
+import 'package:happy_app/core/features/onboarding/pages/onboarding_screen.dart';
 import 'package:happy_app/core/theme/app_colors.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -10,12 +11,13 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+  @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const OnboardingPage1()),
+        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
       );
     });
   }
