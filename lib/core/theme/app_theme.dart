@@ -22,9 +22,17 @@ class AppTextStyles {
     color: Colors.white,
   );
 
-  static const bodyBold = TextStyle(fontSize: 16, fontWeight: FontWeight.w700);
+  static const bodyBold = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+  );
 
-  static const footnote = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  static const footnote = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
 
   static const footnoteBold = TextStyle(
     fontSize: 14,
@@ -55,5 +63,10 @@ class AppTextStyles {
     fontSize: 32,
     fontWeight: FontWeight.w900,
     color: Colors.white,
+  );
+  static const ratingButton = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    color: Color(0xff007AFF),
   );
 }

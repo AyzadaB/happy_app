@@ -12,6 +12,7 @@ class AppColors {
   static const Color accentPrymary = Color(0xFF90121A);
   static const Color error = Color(0xFFDC3333);
   static const Color success = Color(0xFF7CdC33);
+  static const Color ratingColor = Color(0xFF007AFF);
 
   // Добавляй любые кастомные цвета, которые используешь в проекте
 }
