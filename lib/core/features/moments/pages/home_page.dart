@@ -8,14 +8,14 @@ import 'package:happy_app/core/src/components/quote_%D1%81ard.dart';
 import 'package:happy_app/core/src/components/sorting_button.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

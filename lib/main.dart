@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:happy_app/core/features/moments/pages/main_page.dart';
-import 'package:happy_app/core/features/navigation/pages/custom_navigation_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:happy_app/core/features/main/pages/main_page.dart';
+import 'package:happy_app/core/features/onboarding/pages/onboarding_page1.dart';
+import 'package:happy_app/core/features/onboarding/pages/onboarding_screen.dart';
+import 'package:happy_app/core/features/splashScreen/splashScreen_page.dart';
+import 'package:happy_app/core/features/tasks/data/models/task_model.dart';
+import 'package:happy_app/core/features/tasks/data/task_repository.dart';
+import 'package:happy_app/core/features/tasks/logic/cubit/task_cubit.dart';
+import 'package:happy_app/core/features/tasks/pages/tasks_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // ✅ Обязательно
+  await Hive.initFlutter(); // ✅ Только после этого
+  Hive.registerAdapter(TaskModelAdapter());
+  await Hive.deleteBoxFromDisk('tasksBox');
+  await Hive.openBox<TaskModel>('tasksBox');
+
+  final repository = TasksRepository();
+  await repository.addInitialTasks();
+
+  runApp(MyApp(repository: repository));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final TasksRepository repository;
 
-  // This widget is the root of your application.
+  const MyApp({super.key, required this.repository});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: CustomNavigationBar(),
+    return BlocProvider(
+      create: (_) => TaskCubit(repository: repository),
+
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: MainPage()),
     );
   }
 }
