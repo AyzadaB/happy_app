@@ -13,5 +13,6 @@ class AppColors {
   static const Color error = Color(0xFFDC3333);
   static const Color success = Color(0xFF7CdC33);
 
+
   // Добавляй любые кастомные цвета, которые используешь в проекте
 }
