@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:happy_app/core/features/analytics/pages/analytics_page.dart';
 import 'package:happy_app/core/features/splashScreen/splashScreen_page.dart';
 import 'package:happy_app/core/features/tasks/data/models/task_model.dart';
 import 'package:happy_app/core/features/tasks/data/task_repository.dart';

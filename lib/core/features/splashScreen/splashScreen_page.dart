@@ -28,8 +28,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       body: Stack(
         children: [
           Positioned(
-            top: 420,
-            left: 180,
+            top: 470,
+            left: 195,
             child: Image.asset('assets/images/sms.png', fit: BoxFit.cover),
           ),
           Positioned(
@@ -47,7 +47,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           // Звезда в правом верхнем углу
           Positioned(
             top: 169,
-            right: 140,
+            right: 170,
             child: Image.asset(
               'assets/images/star.png',
               width: 173,
