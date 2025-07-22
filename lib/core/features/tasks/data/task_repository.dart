@@ -38,17 +38,17 @@ class TasksRepository {
         );
       }
 
-      for (var card in completedData) {
-        allTasks.add(
-          TaskModel(
-            image: card['image']!,
-            title: card['title']!,
-            desc: card['desc']!,
-            isCompleted: true,
-            completedAt: card['completedAt'],
-          ),
-        );
-      }
+      // for (var card in completedData) {
+      //   allTasks.add(
+      //     TaskModel(
+      //       image: card['image']!,
+      //       title: card['title']!,
+      //       desc: card['desc']!,
+      //       isCompleted: true,
+      //       completedAt: card['completedAt'],
+      //     ),
+      //   );
+      // }
 
       for (var task in allTasks) {
         await box.add(task);
