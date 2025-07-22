@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:happy_app/core/src/colors/app_colors.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
+import 'package:intl/intl.dart'; // Датаны форматтоо үчүн импорттоңуз
 
-// Жаңы: Дата киргизүү үчүн өзүнчө виджет
 class CustomTextFieldIcon extends StatefulWidget {
   final String labelText;
   final Function(DateTime)? onDateSelected;
+  final DateTime? initialDate;
+  final DateTime? selectedDate;
 
   const CustomTextFieldIcon({
     super.key,
     required this.labelText,
     this.onDateSelected,
+    this.initialDate,
+    this.selectedDate,
   });
 
   @override
@@ -18,38 +22,50 @@ class CustomTextFieldIcon extends StatefulWidget {
 }
 
 class _CustomTextFieldIconState extends State<CustomTextFieldIcon> {
-  DateTime _selectedDate = DateTime.now();
+  late DateTime _displayDate;
 
   @override
   void initState() {
     super.initState();
-    // Виджет инициализацияланганда callback аркылуу бүгүнкү датаны жөнөтүү
+    _displayDate = widget.selectedDate ?? widget.initialDate ?? DateTime.now();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onDateSelected?.call(_selectedDate);
+      if (widget.selectedDate == null) {
+        widget.onDateSelected?.call(_displayDate);
+      }
     });
   }
+
+  @override
+  void didUpdateWidget(covariant CustomTextFieldIcon oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.selectedDate != oldWidget.selectedDate && widget.selectedDate != null) {
+      _displayDate = widget.selectedDate!;
+    } else if (widget.selectedDate == null && oldWidget.selectedDate != null) {
+      _displayDate = DateTime.now();
+    }
+  }
+
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _selectedDate,
-      firstDate: DateTime(1990), // Бүгүнкү күндөн баштап тандоого уруксат
-      lastDate: DateTime.now(),
+      initialDate: _displayDate,
+      firstDate: DateTime(1990), // Эң эрте тандалуучу дата (Мисалы, 1990-жыл)
+      lastDate: DateTime.now(), // <-- Бул жерди өзгөрттүк! Бүгүнкү күнгө чейин гана активдүү
       builder: (context, child) {
         return Theme(
           data: ThemeData.dark().copyWith(
             colorScheme: ColorScheme.dark(
-              primary:
-                  Colors.black, // Мисалы, дата тандоочунун негизги түсү
+              primary: AppColors.ratingColor,
               onPrimary: Colors.white,
-              surface: AppColors.primary, // Фондук түс
-              onSurface: Colors.black, // Тексттин түсү
+              surface: AppColors.backLevel2,
+              onSurface: AppColors.primary,
             ),
-            dialogBackgroundColor: AppColors.primary, // Диалогдун фону
+            dialogBackgroundColor: AppColors.backLevel2,
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor:
-                    Colors.blue, // Баскычтардын түсү (OK, CANCEL)
+                foregroundColor: AppColors.primary,
               ),
             ),
           ),
@@ -57,9 +73,9 @@ class _CustomTextFieldIconState extends State<CustomTextFieldIcon> {
         );
       },
     );
-    if (picked != null && picked != _selectedDate) {
+    if (picked != null && picked != _displayDate) {
       setState(() {
-        _selectedDate = picked;
+        _displayDate = picked;
       });
       widget.onDateSelected?.call(picked);
     }
@@ -87,7 +103,7 @@ class _CustomTextFieldIconState extends State<CustomTextFieldIcon> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${_selectedDate.day.toString().padLeft(2, '0')}.${_selectedDate.month.toString().padLeft(2, '0')}.${_selectedDate.year}',
+                  DateFormat('dd.MM.yyyy').format(_displayDate),
                   style: AppTextStyles.body.copyWith(color: AppColors.primary),
                 ),
                 Icon(

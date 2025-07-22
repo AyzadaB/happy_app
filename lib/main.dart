@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => TaskCubit(repository: repository),
-
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreenPage(),

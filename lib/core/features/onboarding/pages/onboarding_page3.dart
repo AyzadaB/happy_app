@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happy_app/core/features/main/pages/main_page.dart';
 import 'package:happy_app/core/src/colors/app_colors.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
 
@@ -30,7 +31,7 @@ class OnboardingPage3 extends StatelessWidget {
               ),
               SizedBox(height: 24),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));},
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(256, 54),
                   backgroundColor: AppColors.accentPrymary,

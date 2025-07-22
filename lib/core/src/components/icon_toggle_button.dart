@@ -6,7 +6,7 @@ enum ViewMode { grid, list }
 
 class IconToggleButton extends StatelessWidget {
   final ViewMode currentViewMode; // Учурдагы режимди сырттан алат
-  final ValueChanged<ViewMode> onChanged; // Режим өзгөргөндө чакырыла турган callback
+  final Function(ViewMode mode) onChanged; // Режим өзгөргөндө чакырыла турган callback
 
   const IconToggleButton({
     Key? key,
