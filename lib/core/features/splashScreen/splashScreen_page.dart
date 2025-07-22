@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:happy_app/core/features/onboarding/pages/onboarding_page1.dart';
 import 'package:happy_app/core/features/onboarding/pages/onboarding_screen.dart';
 import 'package:happy_app/core/src/colors/app_colors.dart';
 

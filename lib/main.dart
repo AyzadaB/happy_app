@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happy_app/core/features/main/pages/main_page.dart';
-import 'package:happy_app/core/features/onboarding/pages/onboarding_page1.dart';
-import 'package:happy_app/core/features/onboarding/pages/onboarding_screen.dart';
 import 'package:happy_app/core/features/splashScreen/splashScreen_page.dart';
 import 'package:happy_app/core/features/tasks/data/models/task_model.dart';
 import 'package:happy_app/core/features/tasks/data/task_repository.dart';
 import 'package:happy_app/core/features/tasks/logic/cubit/task_cubit.dart';
-import 'package:happy_app/core/features/tasks/pages/tasks_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
@@ -32,7 +28,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (_) => TaskCubit(repository: repository),
 
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: MainPage()),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreenPage()),
     );
   }
 }
