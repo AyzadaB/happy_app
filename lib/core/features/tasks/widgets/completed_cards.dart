@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:happy_app/core/features/tasks/data/models/task_model.dart';
-import 'package:happy_app/core/theme/theme.dart';
-=======
 import 'package:happy_app/core/src/colors/app_colors.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
->>>>>>> 0842900a3aa16b19687acbe2b16af77dc0ae1dd4
 import 'package:intl/intl.dart';
 
 class CompletedCards extends StatelessWidget {
