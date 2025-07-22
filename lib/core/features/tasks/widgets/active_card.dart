@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happy_app/core/features/tasks/data/models/task_model.dart';
-import 'package:happy_app/core/theme/theme.dart';
+import 'package:happy_app/core/src/colors/app_colors.dart';
+import 'package:happy_app/core/src/typography/app_text_styles.dart';
 
 class ActiveCards extends StatelessWidget {
   final String imagePath;

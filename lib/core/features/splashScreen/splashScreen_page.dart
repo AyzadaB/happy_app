@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happy_app/core/features/onboarding/pages/onboarding_page1.dart';
 import 'package:happy_app/core/features/onboarding/pages/onboarding_screen.dart';
-import 'package:happy_app/core/theme/app_colors.dart';
+import 'package:happy_app/core/src/colors/app_colors.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});

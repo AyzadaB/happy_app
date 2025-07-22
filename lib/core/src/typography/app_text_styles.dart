@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class AppTextStyles {
   static const headline = TextStyle(fontSize: 24, fontWeight: FontWeight.w400);
-
   static const headlineBold = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w700,

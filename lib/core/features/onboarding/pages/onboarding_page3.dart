@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:happy_app/core/theme/app_colors.dart';
-import 'package:happy_app/core/theme/app_theme.dart';
+import 'package:happy_app/core/src/colors/app_colors.dart';
+import 'package:happy_app/core/src/typography/app_text_styles.dart';
 
 class OnboardingPage3 extends StatelessWidget {
   const OnboardingPage3({super.key});

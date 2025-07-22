@@ -5,8 +5,9 @@ import 'package:happy_app/core/features/tasks/logic/cubit/task_cubit.dart';
 import 'package:happy_app/core/features/tasks/logic/cubit/task_state.dart';
 import 'package:happy_app/core/features/tasks/widgets/active_card.dart';
 import 'package:happy_app/core/features/tasks/widgets/completed_cards.dart';
-import 'package:happy_app/core/theme/app_colors.dart';
-import 'package:happy_app/core/theme/app_theme.dart';
+import 'package:happy_app/core/src/colors/app_colors.dart';
+import 'package:happy_app/core/src/typography/app_text_styles.dart';
+
 import 'package:hive/hive.dart';
 
 class TasksPage extends StatefulWidget {

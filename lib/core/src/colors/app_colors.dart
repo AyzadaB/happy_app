@@ -14,5 +14,6 @@ class AppColors {
   static const Color success = Color(0xFF7CdC33);
   static const Color ratingColor = Color(0xFF007AFF);
 
+
   // Добавляй любые кастомные цвета, которые используешь в проекте
 }

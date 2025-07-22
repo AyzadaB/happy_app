@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:happy_app/core/theme/app_colors.dart';
+import 'package:happy_app/core/src/colors/app_colors.dart';
 
 class RatingWidget extends StatefulWidget {
   const RatingWidget({super.key});
