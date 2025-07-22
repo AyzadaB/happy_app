@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 final List<Map<String, String>> cardsData = [
   {
     'image': 'assets/images/taskPic.png',
