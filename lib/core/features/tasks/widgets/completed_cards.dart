@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happy_app/core/features/tasks/data/models/task_model.dart';
 import 'package:happy_app/core/src/colors/app_colors.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
 import 'package:intl/intl.dart';
@@ -8,12 +9,14 @@ class CompletedCards extends StatelessWidget {
   final String title;
   final String description;
   final int? completedAt;
+  final TaskModel task;
   const CompletedCards({
     super.key,
     required this.imagePath,
     required this.title,
     required this.description,
     required this.completedAt,
+    required this.task,
   });
 
   @override
@@ -44,14 +47,12 @@ class CompletedCards extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        completedAt != null
-                            ? DateFormat.yMMMd().format(
-                                DateTime.fromMillisecondsSinceEpoch(
-                                  completedAt!,
-                                ),
-                              )
-                            : 'Not completed',
-                        style: AppTextStyles.footnote,
+                        task.completedAt != null
+                            ? ' ${DateFormat('dd.MM.yyyy').format(DateTime.fromMillisecondsSinceEpoch(task.completedAt!))}'
+                            : 'You have not completed any tasks yet.',
+                        style: AppTextStyles.footnote.copyWith(
+                          color: Color(0xff7CDC33),
+                        ),
                       ),
                       Text(title, style: AppTextStyles.bodyBold),
                       SizedBox(height: 10),

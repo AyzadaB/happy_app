@@ -37,8 +37,8 @@ class TaskCubit extends Cubit<TaskState> {
     loadTasks();
   }
 
-  void updateTask(int index, TaskModel updatedTask) async {
+  Future<void> updateTask(int index, TaskModel updatedTask) async {
     await repository.updateTask(index, updatedTask);
-    loadTasks(); // обновит состояние
+    loadTasks(); // перезагружает активные и завершённые
   }
 }

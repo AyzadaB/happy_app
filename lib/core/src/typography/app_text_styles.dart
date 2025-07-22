@@ -7,7 +7,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
   );
 
-  static const title = TextStyle(fontSize: 20, fontWeight: FontWeight.w400);
+  static const title = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
 
   static const titleBold = TextStyle(
     fontSize: 20,
