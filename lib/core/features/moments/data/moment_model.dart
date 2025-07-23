@@ -1,45 +1,40 @@
-// lib/core/features/moments/data/moment_model.dart
 import 'dart:io';
+import 'package:hive/hive.dart';
 
-class MomentModel {
+part 'moment_model.g.dart'; // Этот файл будет сгенерирован
+
+@HiveType(typeId: 1)
+class MomentModel extends HiveObject {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String name;
+
+  @HiveField(2)
   final DateTime date;
+
+  @HiveField(3)
   final String tag;
-  final File? imageFile; // Эми бул null болушу мүмкүн
-  final String? imageAssetPath; // Жаңы талаа: assets жолу
+
+  @HiveField(4)
+  final String? imageFilePath; // Хранит путь к файлу изображения
+
+  @HiveField(5)
+  final String? imageAssetPath; // Путь к ассету, если используется
 
   MomentModel({
     required this.id,
     required this.name,
     required this.date,
     required this.tag,
-    this.imageFile, // Optional
-    this.imageAssetPath, // Optional
-  }) : assert(imageFile != null || imageAssetPath != null,
-            'Either imageFile or imageAssetPath must be provided'); // Жок дегенде бири болушу керек
+    this.imageFilePath,
+    this.imageAssetPath,
+  }) : assert(
+         imageFilePath != null || imageAssetPath != null,
+         'Должен быть задан хотя бы один путь к изображению',
+       );
 
-  // Hive үчүн toMap/fromMap же toJson/fromJson методдорун кийин кошосуз
-  // азырынча, бул жерде бир мисал:
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'date': date.toIso8601String(),
-      'tag': tag,
-      'imageFilePath': imageFile?.path, // File path for local storage
-      'imageAssetPath': imageAssetPath, // Asset path for bundled assets
-    };
-  }
-
-  factory MomentModel.fromMap(Map<String, dynamic> map) {
-    return MomentModel(
-      id: map['id'],
-      name: map['name'],
-      date: DateTime.parse(map['date']),
-      tag: map['tag'],
-      imageFile: map['imageFilePath'] != null ? File(map['imageFilePath']) : null,
-      imageAssetPath: map['imageAssetPath'],
-    );
-  }
+  // Геттер для удобного получения файла из пути
+  File? get imageFile => imageFilePath != null ? File(imageFilePath!) : null;
 }

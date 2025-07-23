@@ -62,38 +62,38 @@ class MomentDetailBottomSheet extends StatelessWidget {
                           },
                         )
                       : (moment.imageAssetPath != null
-                          ? Image.asset(
-                              moment.imageAssetPath!,
-                              height: 300,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  height: 300,
-                                  width: double.infinity,
-                                  color: AppColors.grey2,
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.broken_image,
-                                      color: AppColors.primary,
-                                      size: 50,
+                            ? Image.asset(
+                                moment.imageAssetPath!,
+                                height: 300,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Container(
+                                    height: 300,
+                                    width: double.infinity,
+                                    color: AppColors.grey2,
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.broken_image,
+                                        color: AppColors.primary,
+                                        size: 50,
+                                      ),
                                     ),
+                                  );
+                                },
+                              )
+                            : Container(
+                                height: 300,
+                                width: double.infinity,
+                                color: AppColors.grey2,
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.no_photography,
+                                    color: AppColors.primary,
+                                    size: 50,
                                   ),
-                                );
-                              },
-                            )
-                          : Container(
-                              height: 300,
-                              width: double.infinity,
-                              color: AppColors.grey2,
-                              child: const Center(
-                                child: Icon(
-                                  Icons.no_photography,
-                                  color: AppColors.primary,
-                                  size: 50,
                                 ),
-                              ),
-                            )),
+                              )),
                 ),
                 Positioned(
                   top: 10,
@@ -104,71 +104,69 @@ class MomentDetailBottomSheet extends StatelessWidget {
                         context: context,
                         builder: (BuildContext innerContext) =>
                             CupertinoActionSheet(
-                          actions: <CupertinoActionSheetAction>[
-                            CupertinoActionSheetAction(
-                              child: const Text(
-                                'Edit',
-                                style: TextStyle(
-                                  color: CupertinoColors.activeBlue,
-                                ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => EditMomentPage(
-                                      moment: moment,
-                                      onSave: (updatedMoment) {
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-
-                                        if (onMomentUpdated != null) {
-                                          onMomentUpdated!(updatedMoment);
-                                        }
-                                      },
+                              actions: <CupertinoActionSheetAction>[
+                                CupertinoActionSheetAction(
+                                  child: const Text(
+                                    'Edit',
+                                    style: TextStyle(
+                                      color: CupertinoColors.activeBlue,
                                     ),
                                   ),
-                                );
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              isDestructiveAction: true,
-                              onPressed: () {
-                                Navigator.pop(
-                                    innerContext);
-                                showDeleteConfirmationDialog(
-                                  context,
-                                  onDeleteConfirmed: () {
-                                    if (onDelete != null) {
-                                      onDelete!();
-                                    }
-                                    print('Moment deleted: ${moment.name}');
-                                    Navigator.pop(context);
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => EditMomentPage(
+                                          moment: moment,
+                                          onSave: (updatedMoment) {
+                                            Navigator.pop(context);
+                                            Navigator.pop(context);
+
+                                            if (onMomentUpdated != null) {
+                                              onMomentUpdated!(updatedMoment);
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                    );
                                   },
-                                );
-                              },
-                              child: const Text(
-                                'Delete',
-                                style: TextStyle(
-                                  color: CupertinoColors.systemRed,
                                 ),
+                                CupertinoActionSheetAction(
+                                  isDestructiveAction: true,
+                                  onPressed: () {
+                                    Navigator.pop(innerContext);
+                                    showDeleteConfirmationDialog(
+                                      context,
+                                      onDeleteConfirmed: () {
+                                        if (onDelete != null) {
+                                          onDelete!();
+                                        }
+                                        print('Moment deleted: ${moment.name}');
+                                        Navigator.pop(context);
+                                      },
+                                    );
+                                  },
+                                  child: const Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      color: CupertinoColors.systemRed,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                child: const Text(
+                                  'Cancel',
+                                  style: TextStyle(
+                                    color: CupertinoColors.activeBlue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(innerContext);
+                                },
                               ),
                             ),
-                          ],
-                          cancelButton: CupertinoActionSheetAction(
-                            child: const Text(
-                              'Cancel',
-                              style: TextStyle(
-                                color: CupertinoColors.activeBlue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(
-                                  innerContext);
-                            },
-                          ),
-                        ),
                       );
                     },
                     child: Container(
@@ -260,9 +258,7 @@ class MomentDetailBottomSheet extends StatelessWidget {
             CupertinoDialogAction(
               child: const Text(
                 'Cancel',
-                style: TextStyle(
-                  color: CupertinoColors.activeBlue,
-                ),
+                style: TextStyle(color: CupertinoColors.activeBlue),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -276,9 +272,7 @@ class MomentDetailBottomSheet extends StatelessWidget {
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(
-                  color: CupertinoColors.systemRed,
-                ),
+                style: TextStyle(color: CupertinoColors.systemRed),
               ),
             ),
           ],

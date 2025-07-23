@@ -33,12 +33,7 @@ class _MainPageState extends State<MainPage> {
             _currentIndex = index;
           });
         },
-        children: [
-          HomePage(),
-          TasksPage(),
-          AnalyticsPage(),
-          SettingsPage(),
-        ],
+        children: [HomePage(), TasksPage(), AnalyticsPage(), SettingsPage()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -53,28 +48,43 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavigationBarItem(
             label: 'Home',
-            icon: SvgPicture.asset( 'assets/icons/home.svg',
-              colorFilter: ColorFilter.mode(_currentIndex == 0 ? AppColors.accentPrymary : AppColors.grey2, BlendMode.srcIn),
+            icon: SvgPicture.asset(
+              'assets/icons/home.svg',
+              colorFilter: ColorFilter.mode(
+                _currentIndex == 0 ? AppColors.accentPrymary : AppColors.grey2,
+                BlendMode.srcIn,
+              ),
             ),
-          
           ),
           BottomNavigationBarItem(
             label: 'Tasks',
-            icon:SvgPicture.asset( 'assets/icons/task.svg',
-              colorFilter: ColorFilter.mode(_currentIndex == 1 ? AppColors.accentPrymary : AppColors.grey2, BlendMode.srcIn),
-            )
+            icon: SvgPicture.asset(
+              'assets/icons/task.svg',
+              colorFilter: ColorFilter.mode(
+                _currentIndex == 1 ? AppColors.accentPrymary : AppColors.grey2,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
           BottomNavigationBarItem(
             label: 'Analytics',
-            icon: SvgPicture.asset( 'assets/icons/analytics.svg',
-              colorFilter: ColorFilter.mode(_currentIndex == 2 ? AppColors.accentPrymary : AppColors.grey2, BlendMode.srcIn),
-            )
+            icon: SvgPicture.asset(
+              'assets/icons/analytics.svg',
+              colorFilter: ColorFilter.mode(
+                _currentIndex == 2 ? AppColors.accentPrymary : AppColors.grey2,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
           BottomNavigationBarItem(
             label: 'Settings',
-            icon:SvgPicture.asset( 'assets/icons/settings.svg',
-              colorFilter: ColorFilter.mode(_currentIndex == 3 ? AppColors.accentPrymary : AppColors.grey2, BlendMode.srcIn),
-            )
+            icon: SvgPicture.asset(
+              'assets/icons/settings.svg',
+              colorFilter: ColorFilter.mode(
+                _currentIndex == 3 ? AppColors.accentPrymary : AppColors.grey2,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
         ],
       ),
