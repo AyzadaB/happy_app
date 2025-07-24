@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:happy_app/core/features/moments/data/moment_model.dart';
 import 'package:happy_app/core/features/moments/widgets/app_bar_widget.dart';

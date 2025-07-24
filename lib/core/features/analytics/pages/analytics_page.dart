@@ -58,29 +58,25 @@ class AnalyticsPage extends StatelessWidget {
                         Text("Last Moments", style: AppTextStyles.titleBold),
                         const SizedBox(height: 10),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: state.moments.take(3).map((moment) {
-                            return Expanded(
-                              child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: 8),
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: AppColors.backLevel2,
-                                ),
-                                clipBehavior: Clip.hardEdge,
-                                child:
-                                    moment.imageFile != null &&
-                                        File(
-                                          moment.imageFile!.path,
-                                        ).existsSync()
-                                    ? Image.file(
-                                        File(moment.imageFile!.path),
-                                        fit: BoxFit.cover,
-                                      )
-                                    : const Icon(Icons.image),
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 8),
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColors.backLevel2,
                               ),
+                              clipBehavior: Clip.hardEdge,
+                              child:
+                                  moment.imageFile != null &&
+                                      File(moment.imageFile!.path).existsSync()
+                                  ? Image.file(
+                                      File(moment.imageFile!.path),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const Icon(Icons.image),
                             );
                           }).toList(),
                         ),
