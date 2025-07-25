@@ -6,6 +6,7 @@ import 'package:happy_app/core/features/moments/logic/moment_cubit.dart';
 import 'package:happy_app/core/features/moments/pages/add_moment_page.dart';
 import 'package:happy_app/core/features/moments/pages/moment_detail_bottom_sheet.dart';
 import 'package:happy_app/core/features/moments/widgets/app_bar_widget.dart';
+import 'package:happy_app/core/features/quote/logic/quote_cubit.dart';
 import 'package:happy_app/core/src/components/icon_toggle_button.dart';
 import 'package:happy_app/core/src/src.dart';
 
@@ -24,9 +25,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Загрузка моментов теперь инициируется в кубите,
-    // но если нужно можно вызвать кубит явно:
-    // context.read<MomentCubit>().loadMoments();
   }
 
   @override
@@ -43,7 +41,6 @@ class _HomePageState extends State<HomePage> {
             final filteredMoments = _applyFiltersAndSorting(allMoments);
             final isMomentsEmpty = allMoments.isEmpty;
             final isFilteredMomentsEmpty = filteredMoments.isEmpty;
-
             String sortButtonTitle = _currentSortOption == 'date_desc'
                 ? 'New'
                 : 'Old';
@@ -56,9 +53,13 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  QuoteCard(
-                    quote:
-                        'The brightest moments are found in simple things: a smile, morning light, a warm cup of tea',
+                  BlocBuilder<QuoteCubit, QuoteState>(
+                    builder: (context, quoteState) {
+                      if (quoteState is QuoteLoaded) {
+                        return QuoteCard(quote: quoteState.quoteText);
+                      }
+                      return const SizedBox();
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -105,27 +106,30 @@ class _HomePageState extends State<HomePage> {
                           onTagSelected: _onTagFilterChanged,
                         ),
                         const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SortingButton(
-                              onTap: () {
-                                _onSortOptionChanged(
-                                  _currentSortOption == 'date_desc'
-                                      ? 'date_asc'
-                                      : 'date_desc',
-                                );
-                              },
-                              title: sortButtonTitle,
-                              icon: sortButtonIcon,
-                            ),
-                            IconToggleButton(
-                              currentViewMode: _currentViewMode,
-                              onChanged: (mode) {
-                                _onViewModeChanged(mode);
-                              },
-                            ),
-                          ],
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 14.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SortingButton(
+                                onTap: () {
+                                  _onSortOptionChanged(
+                                    _currentSortOption == 'date_desc'
+                                        ? 'date_asc'
+                                        : 'date_desc',
+                                  );
+                                },
+                                title: sortButtonTitle,
+                                icon: sortButtonIcon,
+                              ),
+                              IconToggleButton(
+                                currentViewMode: _currentViewMode,
+                                onChanged: (mode) {
+                                  _onViewModeChanged(mode);
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 16),
                         if (isFilteredMomentsEmpty)
@@ -243,7 +247,6 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           } else {
-            // Можно обработать ошибочное состояние, если есть MomentError
             return const Center(child: Text('Error loading moments'));
           }
         },
@@ -333,9 +336,16 @@ class _HomePageState extends State<HomePage> {
         onDelete: () {
           context.read<MomentCubit>().deleteMoment(moment.id);
           Navigator.pop(bottomSheetContext);
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('Moment deleted!')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Moment deleted!',
+                style: AppTextStyles.bodyBold.copyWith(
+                  color: AppColors.accentPrymary,
+                ),
+              ),
+            ),
+          );
         },
         onMomentUpdated: (updatedMoment) {
           context.read<MomentCubit>().addMoment(

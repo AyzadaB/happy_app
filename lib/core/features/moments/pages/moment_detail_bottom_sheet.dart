@@ -1,9 +1,8 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:happy_app/core/features/main/pages/main_page.dart';
 import 'package:happy_app/core/features/moments/data/moment_model.dart';
 import 'package:happy_app/core/features/moments/pages/edit_moment_page.dart';
-import 'package:happy_app/core/features/moments/pages/home_page.dart';
 import 'package:happy_app/core/src/colors/app_colors.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
 import 'package:intl/intl.dart';
@@ -124,7 +123,7 @@ class MomentDetailBottomSheet extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    HomePage(),
+                                                    MainPage(),
                                               ),
                                             );
 
@@ -150,7 +149,7 @@ class MomentDetailBottomSheet extends StatelessWidget {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => HomePage(),
+                                            builder: (context) => MainPage(),
                                           ),
                                         );
                                       },

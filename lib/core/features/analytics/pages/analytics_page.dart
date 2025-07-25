@@ -58,7 +58,6 @@ class AnalyticsPage extends StatelessWidget {
                         Text("Last Moments", style: AppTextStyles.titleBold),
                         const SizedBox(height: 10),
                         Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: state.moments.take(3).map((moment) {
                             return Container(
                               margin: EdgeInsets.symmetric(horizontal: 8),

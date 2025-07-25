@@ -1,14 +1,12 @@
-// lib/core/src/components/vertical_card.dart
-import 'dart:io'; // File классы үчүн
 import 'package:flutter/material.dart';
 import 'package:happy_app/core/features/moments/data/moment_model.dart'; // MomentModel импорту
 import 'package:happy_app/core/src/colors/app_colors.dart';
 import 'package:happy_app/core/src/typography/app_text_styles.dart';
-import 'package:intl/intl.dart'; // AppTextStyles импорту
+import 'package:intl/intl.dart'; 
 
 class VerticalCard extends StatelessWidget {
-  final MomentModel moment; // MomentModel объектисин кабыл алабыз
-  final VoidCallback? onTap; // Карточканы басканда иштөөчү callback
+  final MomentModel moment; 
+  final VoidCallback? onTap; 
 
   const VerticalCard({
     super.key,
@@ -18,7 +16,6 @@ class VerticalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Сүрөттү MomentModel'ден алуу логикасы
     Widget imageWidget;
     if (moment.imageFile != null) {
       imageWidget = Image.file(
@@ -66,33 +63,31 @@ class VerticalCard extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: onTap, // Карточканы басканда callback'ти чакырабыз
+      onTap: onTap, 
       child: Container(
-        width: double.infinity, // Туурасын толук алат
-        height: 120, // Бийиктигин белгилейбиз
-        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Горизонталдык жана вертикалдык аралык
+        width: double.infinity, 
+        height: 120, 
+        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          color: AppColors.backLevel1, // Фондун түсү backLevel2 болсун
-          borderRadius: BorderRadius.circular(12.0), // Жалпы карточканын бурчтарын тегеректөө
+          color: AppColors.backLevel1,
+          borderRadius: BorderRadius.circular(12.0),
         ),
         child: Row(
           children: [
-            // Сол жактагы сүрөт
             ClipRRect(
-              borderRadius: BorderRadius.circular(12.0), // Сүрөт бурчтарын тегеректөө
+              borderRadius: BorderRadius.circular(12.0),
               child: imageWidget,
             ),
-            const SizedBox(width: 16.0), // Сүрөт менен тексттин ортосундагы боштук
-            // Оң жактагы текст маалыматы
+            const SizedBox(width: 16.0), 
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Мазмунду вертикалдуу жайылтат
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, 
                 children: [
                   Text(
-                    moment.name, // MomentModel'ден title
-                    style: AppTextStyles.body.copyWith(color: AppColors.primary), // AppTextStyles колдонуу
+                    moment.name, 
+                    style: AppTextStyles.body.copyWith(color: AppColors.primary), 
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -107,12 +102,12 @@ class VerticalCard extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
                         decoration: BoxDecoration(
-                          color: AppColors.backLevel3, // Тегдин фону backLevel2ге жакын болсун
+                          color: AppColors.backLevel3, 
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Text(
-                          moment.tag, // MomentModel'ден tag
-                          style: AppTextStyles.caption.copyWith(color: AppColors.primary), // AppTextStyles колдонуу
+                          moment.tag,
+                          style: AppTextStyles.caption.copyWith(color: AppColors.primary), 
                         ),
                       ),
                     ],

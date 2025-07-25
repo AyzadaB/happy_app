@@ -17,8 +17,6 @@ void main() async {
   Hive.registerAdapter(TaskModelAdapter());
   Hive.registerAdapter(MomentModelAdapter());
   Hive.registerAdapter(QuoteModelAdapter());
-
-  await Hive.deleteBoxFromDisk('tasksBox');
   await Hive.openBox<TaskModel>('tasksBox');
   await Hive.openBox<MomentModel>('momentsBox');
   final momentsBox = await Hive.openBox<MomentModel>('momentsBox');
